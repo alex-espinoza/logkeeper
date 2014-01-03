@@ -15,7 +15,7 @@ class OrganizationsController < ApplicationController
     @organization_user = OrganizationUser.new
 
     if @organization.save
-      @organization_user.create_organization_and_user_connection(current_user, @organization)
+      @organization_user.create_new_organization_and_user_connection(current_user, @organization)
       redirect_to organizations_path, :notice => 'Organization has been successfully created.'
     else
       render 'new'

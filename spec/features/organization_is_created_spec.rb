@@ -14,6 +14,14 @@ feature 'Organization is created' do
     expect(user.organizations.count).to eq(1)
   end
 
+  scenario 'owner role is assigned to user' do
+    sign_in_as(user.email, user.password)
+    create_new_organization('Bombay Reservoir')
+
+    expect(page).to have_content('Organization has been successfully created.')
+    expect(OrganizationUser.last.role).to eq('owner')
+  end
+
   scenario 'with invalid name' do
     sign_in_as(user.email, user.password)
     create_new_organization('')

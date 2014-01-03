@@ -5,6 +5,7 @@ describe OrganizationUser do
   it { should belong_to(:user) }
 
   it { should validate_presence_of(:organization_id) }
+  it { should validate_presence_of(:role) }
   it { should validate_presence_of(:user_id) }
 end
 
@@ -14,7 +15,7 @@ describe OrganizationUser, '#create_organization_and_user_connection' do
 
   it 'creates a new record when passed valid params' do
     @organization_user = OrganizationUser.new
-    @organization_user.create_organization_and_user_connection(user, organization)
+    @organization_user.create_new_organization_and_user_connection(user, organization)
 
     expect(@organization_user).to be_valid
     expect(OrganizationUser.count).to eq(1)
