@@ -1,0 +1,13 @@
+<h1>Organizations</h1>
+
+<% if current_user.organizations %>
+  <div class='organization_list'>
+    <ul>
+      <% current_user.organizations.each do |o| %>
+        <li><%= link_to "#{o.name}", organization_path(o) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <p>You are currently not a part of any organizations.</p>
+<% end %>
