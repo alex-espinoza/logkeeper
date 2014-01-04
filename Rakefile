@@ -3,7 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Logbook::Application.load_tasks
+Logkeeper::Application.load_tasks
 if defined?(RSpec)
   desc 'Run factory specs.'
 
