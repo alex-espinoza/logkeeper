@@ -11,6 +11,6 @@ class Logbook < ActiveRecord::Base
   private
 
   def duplicate_logbook_name_in_organization
-    errors.add :name, "already exists with that name" if Logbook.where(:organization_id => organization_id, :name => name).length > 0
+    errors.add :name, "already exists with that name" if Logbook.exists?(:organization_id => organization_id, :name => name)
   end
 end
