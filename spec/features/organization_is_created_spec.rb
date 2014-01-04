@@ -34,7 +34,7 @@ feature 'Organization is created' do
   scenario 'with previously taken name' do
     create_existing_organization_data
     sign_in_as(user.email, user.password)
-    create_new_organization('Organization 1')
+    create_new_organization('Bombay Reservoir')
 
     expect(page).to have_content('has already been taken')
     expect(Organization.count).to eq(1)

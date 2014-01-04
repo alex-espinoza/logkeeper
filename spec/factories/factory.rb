@@ -8,6 +8,17 @@ FactoryGirl.define do
   end
 
   factory :existing_organization, :class => Organization do
-    sequence(:name) { |n| "Organization #{n}" }
+    name 'Bombay Reservoir'
+  end
+
+  factory :organization_user_connection, :class => OrganizationUser do
+    role 'owner'
+    association :organization
+    association :user
+  end
+
+  factory :existing_logbook, :class => Logbook do
+    name 'Maintenance Records'
+    association :organization
   end
 end

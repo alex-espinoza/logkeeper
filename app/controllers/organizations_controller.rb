@@ -2,8 +2,11 @@ class OrganizationsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    #list all organizations that the user belongs to - time for join table
     @organizations = current_user.organizations
+  end
+
+  def show
+    @organization = Organization.find(params.require(:id))
   end
 
   def new
@@ -15,7 +18,7 @@ class OrganizationsController < ApplicationController
     @organization_user = OrganizationUser.new
 
     if @organization.save
-      @organization_user.create_new_organization_and_user_connection(current_user, @organization)
+      @organization_user.create_owner_organization_and_user_connection(current_user, @organization)
       redirect_to organizations_path, :notice => 'Organization has been successfully created.'
     else
       render 'new'

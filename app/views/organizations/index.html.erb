@@ -1,6 +1,8 @@
 <h1>Organizations</h1>
 
-<% if current_user.organizations %>
+<% if current_user.organizations.empty? %>
+  <p>You are currently not a part of any organizations.</p>
+<% else %>
   <div class='organization_list'>
     <ul>
       <% current_user.organizations.each do |o| %>
@@ -8,6 +10,6 @@
       <% end %>
     </ul>
   </div>
-<% else %>
-  <p>You are currently not a part of any organizations.</p>
 <% end %>
+
+<p><%= link_to 'Create new organization', new_organization_path %></p>

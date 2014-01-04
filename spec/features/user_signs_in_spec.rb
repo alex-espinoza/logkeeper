@@ -6,7 +6,7 @@ feature 'User signing in' do
   scenario 'with existing account' do
     sign_in_as(user.email, user.password)
 
-    expect(page).to have_content('sign out')
+    expect(page).to have_content('Signed in successfully')
   end
 
   scenario 'with non-existant account' do
