@@ -1,0 +1,11 @@
+<h2>New Logbook</h2>
+
+<%= simple_form_for [@organization, @logbook] do |f| %>
+  <div class="form-inputs">
+    <%= f.input :name, :required => true, :autofocus => true %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, "Create logbook" %>
+  </div>
+<% end %>

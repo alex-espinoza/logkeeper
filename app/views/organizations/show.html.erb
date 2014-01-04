@@ -1,0 +1,15 @@
+<h1><%= @organization.name %></h1>
+
+<% if @organization.logbooks.empty? %>
+  <p>No logbooks currently exist.</p>
+<% else %>
+  <div class='logbook_list'>
+    <ul>
+      <% @organization.logbooks.each do |l| %>
+        <li><%= link_to "#{l.name}", organization_logbook_path(@organization, l) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<p><%= link_to 'Create new logbook', new_organization_logbook_path(@organization) %></p>

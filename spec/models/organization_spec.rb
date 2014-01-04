@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe Organization do
+  it { should have_many(:logbooks) }
   it { should have_many(:organization_users) }
   it { should have_many(:users).through(:organization_users) }
 
