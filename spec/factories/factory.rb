@@ -21,4 +21,18 @@ FactoryGirl.define do
     name 'Maintenance Records'
     association :organization
   end
+
+  factory :posted_page, :class => Page do
+    is_posted true
+    name 'posted page'
+    scheduled_at 1.day.ago
+    association :logbook
+  end
+
+  factory :not_posted_page, :class => Page do
+    is_posted false
+    name 'not posted page'
+    scheduled_at 1.day.from_now
+    association :logbook
+  end
 end

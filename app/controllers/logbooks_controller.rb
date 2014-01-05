@@ -2,6 +2,10 @@ class LogbooksController < ApplicationController
   before_filter :authenticate_user!
   before_filter :load_organization
 
+  def show
+    @logbook = Logbook.find(params.require(:id))
+  end
+
   def new
     @logbook = Logbook.new
   end
@@ -10,6 +14,7 @@ class LogbooksController < ApplicationController
     @logbook = Logbook.new(logbook_params)
 
     if @logbook.save
+      @logbook.create_first_page
       redirect_to organization_path(@organization), :notice => 'Logbook has been successfully created.'
     else
       render 'new'

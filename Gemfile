@@ -5,6 +5,8 @@ ruby '2.1.0'
 gem 'airbrake'
 gem 'bourbon'
 gem 'coffee-rails'
+gem 'cancan'
+gem 'devise'
 gem 'delayed_job_active_record', '>= 4.0.0'
 gem 'email_validator'
 gem 'flutie'
@@ -20,26 +22,25 @@ gem 'simple_form'
 gem 'uglifier'
 gem 'unicorn'
 gem 'will_paginate', '~> 3.0'
-gem 'devise'
-gem 'cancan'
 
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'foreman'
+  gem 'quiet_assets'
   gem 'spring'
   gem 'spring-commands-rspec'
-  gem 'quiet_assets'
 end
 
 group :development, :test do
   gem 'dotenv-rails'
   gem 'factory_girl_rails'
-  gem 'rspec-rails', '>= 2.14'
   gem 'pry-rails'
+  gem 'rspec-rails', '>= 2.14'
 end
 
 group :test do
+  gem 'capybara-email'
   gem 'capybara-webkit', '>= 1.0.0'
   gem 'database_cleaner'
   gem 'launchy'
@@ -47,7 +48,6 @@ group :test do
   gem 'simplecov', require: false
   gem 'timecop'
   gem 'webmock'
-  gem 'capybara-email'
 end
 
 group :staging, :production do

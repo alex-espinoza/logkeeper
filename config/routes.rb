@@ -4,6 +4,8 @@ Logkeeper::Application.routes.draw do
   devise_for :users
 
   resources :organizations, :only => [:index, :show, :new, :create] do
-    resources :logbooks, :only => [:new, :create, :show]
+    resources :logbooks, :only => [:show, :new, :create] do
+      resources :pages, :only => [:show]
+    end
   end
 end

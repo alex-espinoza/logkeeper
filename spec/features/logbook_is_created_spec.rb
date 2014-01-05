@@ -4,7 +4,7 @@ feature 'Logbook is created' do
   let!(:user) { FactoryGirl.create(:existing_user) }
   let!(:organization) { FactoryGirl.create(:existing_organization) }
   let!(:organization_user) { FactoryGirl.create(:organization_user_connection, :organization => organization, :user => user) }
-  let(:create_existing_logbook) { FactoryGirl.create(:existing_logbook, :organization => organization)}
+  let(:create_existing_logbook) { FactoryGirl.create(:existing_logbook, :organization => organization) }
 
   scenario 'with valid name' do
     sign_in_as(user.email, user.password)
@@ -30,6 +30,18 @@ feature 'Logbook is created' do
 
     expect(page).to have_content('exists with that name')
     expect(Logbook.count).to eq(1)
+  end
+
+  scenario 'with first page' do
+    create_existing_logbook
+    create_existing_logbook.create_first_page
+    sign_in_as(user.email, user.password)
+    click_link 'Bombay Reservoir'
+    click_link 'Maintenance Records'
+
+    expect(page).to have_content('Sunday, January 5, 2014')
+    expect(Page.count).to eq(2)
+    expect(create_existing_logbook.posted_pages.count).to eq(1)
   end
 
   def create_new_logbook(name)

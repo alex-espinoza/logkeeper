@@ -1,0 +1,13 @@
+<h1><%= @logbook.name %></h1>
+
+<% if @logbook.pages.empty? %>
+  <p>No pages currently exist.</p>
+<% else %>
+  <div class='logbook_list'>
+    <ul>
+      <% @logbook.posted_pages.each do |p| %>
+        <li><%= link_to "#{p.name}", organization_logbook_page_path(@logbook.organization, @logbook, p) %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
