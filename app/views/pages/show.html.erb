@@ -1,0 +1,15 @@
+<h1><%= @page.name %></h1>
+
+<% if @page.entries.empty? %>
+  <p>No entries currently exist.</p>
+<% else %>
+  <div class='entries_list'>
+    <ul>
+      <% @page.entries.each do |e| %>
+        <li><%= "#{e.text}" %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<p><%= link_to 'Post new entry', new_organization_logbook_page_entry_path(@organization, @logbook, @page) %></p>

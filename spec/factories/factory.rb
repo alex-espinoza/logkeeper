@@ -35,4 +35,11 @@ FactoryGirl.define do
     scheduled_at 1.day.from_now
     association :logbook
   end
+
+  factory :existing_page, :class => Page do
+    is_posted true
+    name 'Tuesday, January 7, 2014'
+    scheduled_at 1.day.from_now
+    association :logbook
+  end
 end

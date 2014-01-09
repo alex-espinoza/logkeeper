@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe User do
+  it { should have_many(:entries) }
   it { should have_many(:organization_users) }
   it { should have_many(:organizations).through(:organization_users) }
 

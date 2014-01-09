@@ -6,6 +6,8 @@ feature 'Logbook is created' do
   let!(:organization_user) { FactoryGirl.create(:organization_user_connection, :organization => organization, :user => user) }
   let(:create_existing_logbook) { FactoryGirl.create(:existing_logbook, :organization => organization) }
 
+  after(:each) { Timecop.return }
+
   scenario 'with valid name' do
     sign_in_as(user.email, user.password)
     create_new_logbook('Maintenance Records')
@@ -33,6 +35,7 @@ feature 'Logbook is created' do
   end
 
   scenario 'with first page' do
+    Timecop.freeze(Time.utc(2014, 1, 5, 5, 0, 0))
     create_existing_logbook
     create_existing_logbook.create_first_page
     sign_in_as(user.email, user.password)
